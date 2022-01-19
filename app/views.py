@@ -4,7 +4,7 @@ from .forms import ProfileForm, AddressForm
 from .serializers import ProfileSerializer, AddressSerializer
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import ListAPIView
-from rest_framework.filters import OrderingFilter, SearchFilter
+from rest_framework.filters import SearchFilter
 # Create your views here.
 
 # def home(request):
@@ -50,12 +50,13 @@ from rest_framework.filters import OrderingFilter, SearchFilter
 
 #     return render(request, 'app/address.html', context)
 
-class AddressListAPIVIew(ListAPIView):
-    queryset = Address.objects.all()
-    serializer_class = AddressSerializer
-
-class ProfileModelViewSet(ModelViewSet):
+class ProfileListAPIVIew(ListAPIView):
     queryset = Profile.objects.all()
-    filter_backends = (SearchFilter)
-    search_fields = ('phoneNumber', 'name')
     serializer_class = ProfileSerializer
+
+class AddressModelViewSet(ModelViewSet):
+    queryset = Address.objects.select_related('owner')
+    serializer_class = AddressSerializer
+    # filter_backends = (SearchFilter)
+    # search_fields = ('phoneNumber', 'name')
+    
