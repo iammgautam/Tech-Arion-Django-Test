@@ -53,10 +53,11 @@ from rest_framework.filters import SearchFilter
 class ProfileListAPIVIew(ListAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+    filter_backends = (SearchFilter)
+    search_fields = ('phoneNumber', 'name')
+    
 
 class AddressModelViewSet(ModelViewSet):
     queryset = Address.objects.select_related('owner')
     serializer_class = AddressSerializer
-    # filter_backends = (SearchFilter)
-    # search_fields = ('phoneNumber', 'name')
     
