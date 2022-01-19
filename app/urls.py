@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import  ProfileModelViewSet
+from .views import  ProfileModelViewSet, AddressListAPIVIew
 from rest_framework import routers
 
 router = routers.SimpleRouter()
