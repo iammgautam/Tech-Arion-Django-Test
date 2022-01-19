@@ -50,11 +50,11 @@ from rest_framework.filters import SearchFilter
 
 #     return render(request, 'app/address.html', context)
 
-class ProfileListAPIVIew(ListAPIView):
+class ProfileModelViewAPIVIew(ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     filter_backends = (SearchFilter)
-    search_fields = ('phoneNumber', 'name')
+    search_fields = ('name',)
     
 
 class AddressModelViewSet(ModelViewSet):
